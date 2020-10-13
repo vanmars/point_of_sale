@@ -1,0 +1,28 @@
+<h1><%= @purchase.name %></h1>
+
+<% if @purchase.products.any? %>
+  <h4>Here are the products for this purchase:</h4>
+  <table>
+        <tr>
+          <th>Product Name</th>
+          <th>Product Price</th>
+        </tr>
+  <% @purchase.products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, purchase_product_path(@purchase, product) %></td>
+        <td><%= product.price %></td>
+      </tr>
+  <% end %>
+  </table>
+<% else %>
+  <p>No products are listed for this purchase.</p>
+<% end %>
+
+<p><%= link_to "Add a product", new_purchase_product_path(@purchase) %></p>
+
+<p><%= link_to "Edit", edit_purchase_path(@purchase) %></p>
+<p><%= link_to "Delete purchase", purchase_path(@purchase),
+                        :data => {:confirm => "Are you sure?",
+                                       :method => "delete"} %></p>
+
+<p><%= link_to "Return to purchases", purchases_path %></p>

@@ -1,0 +1,11 @@
+<%= render "layouts/errors", :object => @purchase %>
+
+<%= form_for @purchase do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+  <%= f.label :products %>
+  <%= f.collection_check_boxes :product_ids, Product.all, :price, :name %>
+  <%= f.submit %>
+<% end %>
